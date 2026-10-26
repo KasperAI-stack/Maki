@@ -13,6 +13,12 @@ En personlig landingpage til ansøgningen som AI & Automation Specialist hos Mak
   - assets/og-image.jpg: billedet, der vises, når linket deles på LinkedIn eller i en mail
 - netlify.toml: fortæller Netlify, at site/ skal publiceres.
 
+## Linket
+
+Siden ligger på GitHub Pages: https://kasperai-stack.github.io/Maki/
+
+Den bliver opdateret automatisk, hver gang der pushes (se .github/workflows/pages.yml). Første gang skal GitHub Pages slås til én gang: Settings → Pages → Source: "GitHub Actions".
+
 ## Se siden på din egen computer
 
 1. Åbn en terminal i mappen.
