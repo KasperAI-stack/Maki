@@ -44,6 +44,8 @@
   --tile: #FFFFFF;
   --logo-filter: none;
   --accent: #BB252B;
+  --accent-fg: #FFFFFF;
+  --accent-hover: #9E1F24;
   --figure-glow: #FFFFFF;
   --figure-shadow: none;
   --s1: #BB252B; --s2: #D63A2F; --s3: #EE6A2C; --s4: #F08A1C;
@@ -91,6 +93,8 @@
   --tile: #F7F3F2;
   --logo-filter: none; /* Makis logo forbliver rødt, også i mørkt tema */
   --accent: #FF7A6E;
+  --accent-fg: #141011;
+  --accent-hover: #FF968C;
   --figure-glow: #4F4546;
   --figure-shadow: drop-shadow(0 0 1.25rem rgb(179 168 166 / .28));
   --s1: #F0565C; --s2: #F46F4E; --s3: #F88E45; --s4: #FFB45C;
@@ -116,6 +120,8 @@
   --tile: #F7F3F2;
   --logo-filter: none; /* Makis logo forbliver rødt, også i mørkt tema */
   --accent: #FF7A6E;
+  --accent-fg: #141011;
+  --accent-hover: #FF968C;
   --figure-glow: #4F4546;
   --figure-shadow: drop-shadow(0 0 1.25rem rgb(179 168 166 / .28));
   --s1: #F0565C; --s2: #F46F4E; --s3: #F88E45; --s4: #FFB45C;
@@ -197,6 +203,10 @@ h3 { font-size: 1.125rem; font-weight: 600; letter-spacing: -.01em; margin: 0 0 
 .btn:active { transform: scale(0.97); }
 .btn:disabled { opacity: .6; cursor: progress; transform: none; }
 .btn-small { font-size: .9rem; padding: .6rem 1.1rem; white-space: nowrap; }
+/* Den røde knap ved siden af den sorte: begge er primære, så de står lige stærkt */
+.btn-accent { background: var(--accent); color: var(--accent-fg); }
+.btn-accent:hover { background: var(--accent-hover); color: var(--accent-fg); }
+.hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
 .top-actions { display: flex; align-items: center; gap: .5rem; flex: none; }
 /* Små knapper i toppen får et usynligt trykområde på mindst 44 px på mobil */
 .theme-toggle, .btn-small { position: relative; }

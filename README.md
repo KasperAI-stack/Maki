@@ -6,6 +6,8 @@ En personlig landingpage til ansøgningen som AI & Automation Specialist hos Mak
 
 - site/: selve hjemmesiden. Det er kun denne mappe, der kommer online.
   - index.html: forsiden med al teksten
+  - cv.html og ansoegning.html: CV'et og ansøgningen bygget op som PDF'erne i assets/pdf/. Ret teksten begge steder.
+  - css/dokument.css: designet til CV og ansøgning (Arimo og Inter, farverne fra PDF'erne)
   - 404.html: siden, der vises, hvis adressen er forkert
   - css/styles.css: farver og design. Makis farver står øverst under `:root`.
   - js/main.js: små forbedringer, fx agentvælgeren i toppen og temaknappen
