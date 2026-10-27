@@ -35,11 +35,11 @@ jobs:
           find _site -name '*.html' -exec sed -i -E "s#(href|src|action)=\"/([^/])#\1=\"$BASE/\2#g" {} +
           sed -i "s#url(\"/#url(\"$BASE/#g" _site/css/*.css
           # Delingsbilledet skal have den fulde adresse, ellers viser LinkedIn det ikke
-          sed -i "s#content=\"/assets/og-image.jpg\"#content=\"$URL/assets/og-image.jpg\"#" _site/index.html
+          find _site -name '*.html' -exec sed -i -E "s#content=\"/assets/(og-image[^\"]*)\"#content=\"$URL/assets/\1\"#" {} +
           touch _site/.nojekyll
           # Ny version ved hvert push, så browseren ikke viser gammel CSS, JS, CV, ansøgning eller PDF fra sin cache
           V=${GITHUB_SHA::7}
-          find _site -name '*.html' -exec sed -i -E "s#(/css/styles\.css|/css/dokument\.css|/js/main\.js|/cv\.html|/ansoegning\.html|\.pdf)\"#\1?v=$V\"#g" {} +
+          find _site -name '*.html' -exec sed -i -E "s#(/css/styles\.css|/css/dokument\.css|/js/main\.js|/cv\.html|/ansoegning\.html|/application\.html|\.pdf)\"#\1?v=$V\"#g" {} +
 
       - uses: actions/upload-pages-artifact@v3
         with:

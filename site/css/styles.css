@@ -220,7 +220,12 @@ h3 { font-size: 1.125rem; font-weight: 600; letter-spacing: -.01em; margin: 0 0 
   .brand-mark { width: 24px; height: 24px; }
   .btn-small { font-size: .85rem; padding: .55rem .85rem; }
 }
-@media (max-width: 22rem) {
+/* Smalle skærme: temaet følger telefonen, så kontakten skjules, og der bliver plads til sprog og knap */
+@media (max-width: 30rem) {
+  .theme-toggle:not([hidden]) { display: none; }
+  .lang-toggle a { min-width: 1.9rem; height: 1.7rem; padding: 0 .35rem; }
+}
+@media (max-width: 24rem) {
   .brand-mark, .brand-x { display: none; }
 }
 /* Temakontakt: sol og måne side om side, det aktive tema er markeret */
@@ -229,6 +234,18 @@ h3 { font-size: 1.125rem; font-weight: 600; letter-spacing: -.01em; margin: 0 0 
   background: var(--soft); border: 1px solid var(--line); border-radius: 999px;
 }
 .theme-toggle[hidden] { display: none; }
+/* Sprogvælger: DA og EN side om side, det aktive sprog er markeret ligesom temaet */
+.lang-toggle {
+  display: flex; align-items: center; gap: 2px; padding: 3px;
+  background: var(--soft); border: 1px solid var(--line); border-radius: 999px;
+}
+.lang-toggle a {
+  display: grid; place-items: center; min-width: 2.1rem; height: 1.9rem; padding: 0 .45rem; border-radius: 999px;
+  color: var(--muted); font-size: .8rem; font-weight: 600; letter-spacing: .03em; text-decoration: none;
+  transition: background-color .15s, color .15s;
+}
+.lang-toggle a:hover { color: var(--ink); }
+.lang-toggle a[aria-current="page"] { background: var(--bg); color: var(--ink); box-shadow: 0 1px 3px rgb(26 19 20 / .15); }
 .t-opt {
   display: grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 50%;
   color: var(--muted); transition: background-color .15s, color .15s;
@@ -717,10 +734,10 @@ h1 {
   .memoji-contact { position: absolute; right: var(--gutter); bottom: 5rem; width: 12rem; margin: 0; }
 }
 .contact-list {
-  list-style: none; margin: 0 auto; padding: 0; max-width: 52rem;
+  list-style: none; margin: 0 auto; padding: 0; max-width: 36rem;
   display: grid; gap: .9rem;
 }
-@media (min-width: 44rem) { .contact-list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 36rem) { .contact-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .contact-card {
   display: flex; flex-direction: column; align-items: flex-start; gap: .2rem; height: 100%;
   padding: 1.4rem 1.4rem 1.5rem; border-radius: var(--radius); text-decoration: none;

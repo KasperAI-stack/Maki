@@ -84,10 +84,12 @@
       return;
     }
     hey.classList.add("is-typing", "is-busy");
+    // Det fælles stykke ("en " på dansk, "a " på engelsk) bliver stående, så kun agentens navn skrives om
+    var keep = text.indexOf(" ") + 1;
+    if (typed.textContent.slice(0, keep) !== text.slice(0, keep)) keep = 0;
     var erase = function () {
       var t = typed.textContent;
-      // Det fælles "en " bliver stående, så kun agentens navn skrives om
-      if (t.length > 3) {
+      if (t.length > keep) {
         typed.textContent = t.slice(0, -1);
         typeTimer = setTimeout(erase, 8);
       } else {
@@ -197,7 +199,8 @@ if (toggle) {
   var render = function () {
     var dark = current() === "dark";
     toggle.setAttribute("data-active", dark ? "dark" : "light");
-    toggle.setAttribute("aria-label", dark ? "Skift til lyst tema" : "Skift til mørkt tema");
+    var en = document.documentElement.lang === "en";
+    toggle.setAttribute("aria-label", dark ? (en ? "Switch to light theme" : "Skift til lyst tema") : (en ? "Switch to dark theme" : "Skift til mørkt tema"));
     // Browserens farve (adresselinjen på mobil) følger det valgte tema.
     document.querySelectorAll('meta[name="theme-color"]').forEach(function (meta) {
       meta.setAttribute("content", dark ? "#141011" : "#FFFFFF");
