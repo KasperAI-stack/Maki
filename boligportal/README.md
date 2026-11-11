@@ -17,7 +17,7 @@ En personlig landingpage til ansøgningen som Digital Marketing Team Lead hos Bo
 
 ## Linket
 
-Siden skal ligge på GitHub Pages: https://kasperai-stack.github.io/boligportal/ (det link står allerede i CV'et og ansøgningen).
+Siden ligger på GitHub Pages: https://kasperai-stack.github.io/boligportalen/ (repoets navn). CV'et og ansøgningen linker til https://kasperai-stack.github.io/boligportal/, så enten skal repoet omdøbes til boligportal, eller linket i PDF'erne skal rettes. Workflowet finder selv repoets navn.
 
 Den bliver opdateret automatisk, hver gang der pushes (se .github/workflows/pages.yml). Første gang skal GitHub Pages slås til én gang: Settings → Pages → Source: "GitHub Actions".
 

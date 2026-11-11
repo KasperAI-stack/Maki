@@ -1,6 +1,6 @@
-# Lægger site/ ud på GitHub Pages: https://kasperai-stack.github.io/boligportal/
-# Siden bruger stier fra roden ("/css/..."), så de får /boligportal foran, fordi Pages ligger i en undermappe.
-# Erstat boligportal med repoets navn (store og små bogstaver som på GitHub) og claude/friendly-meitner-ywn1rb med den gren, der arbejdes på.
+# Lægger site/ ud på GitHub Pages: https://kasperai-stack.github.io/<repoets navn>/
+# Siden bruger stier fra roden ("/css/..."), så de får /<repoets navn> foran, fordi Pages ligger i en undermappe.
+# Navnet hentes automatisk, så det virker, både hvis repoet hedder boligportalen og boligportal.
 name: GitHub Pages
 
 on:
@@ -28,8 +28,8 @@ jobs:
 
       - name: Byg siden til Pages
         env:
-          BASE: /boligportal
-          URL: https://kasperai-stack.github.io/boligportal
+          BASE: /${{ github.event.repository.name }}
+          URL: https://kasperai-stack.github.io/${{ github.event.repository.name }}
         run: |
           cp -r site _site
           # Rodstier ("/css/...") peger på projektmappen på Pages

@@ -472,10 +472,10 @@ h1 {
 .sys-kicker { margin: 0; color: var(--accent); font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .sys-name { margin: .25rem 0 1.25rem; font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800; text-transform: uppercase; letter-spacing: -.01em; }
 .sys-shot {
-  margin: 0 0 1.5rem; aspect-ratio: 16 / 10; overflow: hidden;
+  margin: 0 0 1.5rem; overflow: hidden;
   border-radius: 14px; border: 1px solid var(--soft-line); background: #FFFFFF;
 }
-.sys-shot img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: top center; }
+.sys-shot img { display: block; width: 100%; height: auto; }
 .sys-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
 .sys-list li { position: relative; padding-left: 1.4rem; font-size: .98rem; line-height: 1.55; }
 .sys-list li::before { content: ""; position: absolute; left: 0; top: .5em; width: .55rem; height: .55rem; border-radius: 2px; background: var(--orange); }
