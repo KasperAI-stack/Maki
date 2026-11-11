@@ -1,55 +1,76 @@
-/* Bygget på hey-kasper.dk og farvet i BoligPortals orange (#FF6633) med mørk tekst (#2B2A35), lyst og mørkt tema.
-   Kun flade farver: ingen gradienter med gennemsigtighed og ingen gradient-tekst. */
+/* Bygget på hey-kasper.dk (samme kode som Klean-siden) og farvet i BoligPortals orange (#FF6633) med deres mørke tekstfarve (#2B2A35), med lyst og mørkt tema. */
 
-/* Figtree ligger selv på siden (variabel skrift, vægt 300 til 900, latinske tegn inkl. æøå), ligesom i CV'et og ansøgningen.
-   Licens: SIL Open Font License, se /fonts/OFL-figtree.txt. */
+/* Geist ligger selv på siden (variabel skrift, vægt 400 til 700, latinske tegn inkl. æøå).
+   Licens: SIL Open Font License, se /fonts/OFL.txt. */
 @font-face {
-  font-family: "Figtree";
+  font-family: "Geist";
   font-style: normal;
-  font-weight: 300 900;
+  font-weight: 400 700;
   font-display: swap;
-  src: url("/fonts/figtree-latin.woff2") format("woff2");
+  src: url("/fonts/geist-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Instrument Serif: den tynde serif til fremhævningen i overskriften og citatet. Den minder om "hey" i logoet.
+   Ligger selv på siden. Licens: SIL Open Font License, se /fonts/OFL-instrument-serif.txt. */
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-italic-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 :root {
-  /* Lyst tema er standard. Farverne kommer fra briefen og PDF'erne. */
+  /* Neutrale: grå toner med et strejf af varm orange, der passer til BoligPortals farve. Lyst tema er standard. */
   --bg: #FFFFFF;
-  --soft: #FFF1EB;        /* lys tone til bokse */
-  --soft-line: #FFD3C2;   /* kanten på boksene */
-  --card: #FFFFFF;
-  --ink: #2B2A35;         /* mørk tekst og flader */
-  --muted: #6D6B78;       /* dæmpet tekst, 5,2:1 på hvid */
-  --line: #EFE6E1;
-  --plus: #CDBFB8;
-  --rail: #E6D9D2;
-  --field-border: #8E8A94;
+  --soft: #FFF4EF;
+  --ink: #2B2A35;
+  --muted: #6D6B78;
+  --line: #F3E6E0;
+  --plus: #C9B8B0;
+  --rail: #EAD8CF;
+  --field-border: #8E8A94; /* feltkant, 3,4:1 på --soft */
   --focus: #CC4314;
-  --hover: #F7F3F1;
+  --hover: rgb(43 42 53 / .04);
   --btn-hover: #42414F;
   --tile: #FFFFFF;
-  /* Orange: brandfarven til flader (med mørk tekst, 4,85:1), en mørkere udgave til lille tekst på hvid (4,8:1)
-     og en mellemting til store overskrifter (3,4:1) */
-  --orange: #FF6633;
-  --orange-hover: #FF7A4D;
-  --on-orange: #2B2A35;
-  --accent: #CC4314;
-  --accent-big: #F05A28;
-  --deep: #2B2A35;
-  --deep-fg: #FFFFFF;
-  --deep-sub: #D9D7E0;
+  --logo-filter: none;
+  /* BoligPortal-orange. Tekst på orange er mørk (4,85:1), fordi hvid tekst på orange er for svag at læse. */
+  --accent: #FF6633;
+  --accent-fg: #2B2A35;
+  --accent-hover: #FF7A4D;
+  --figure-glow: #FFFFFF;
   --figure-shadow: none;
-  /* Agenternes toner i chatfeltet */
-  --s1: #FF6633; --s2: #CC4314; --s3: #F08A4B; --s4: #2B2A35;
+  --s1: #FF6633; --s2: #E8551F; --s3: #CC4314; --s4: #2B2A35;
+  /* Hero: agenternes toner, buen og puden i baren */
+  --g3: var(--s3); --g5: #F08A4B;
+  --band-bg: #FFF1EB;
   --pill-bg: #FFFFFF;
-  --pill-shadow: 0 0 0 1px var(--soft-line), 0 6px 16px rgb(43 42 53 / .10);
+  --pill-shadow: 0 8px 22px rgb(43 42 53 / .14), 0 1px 3px rgb(43 42 53 / .08);
   color-scheme: light;
+
+  /* BoligPortals farver: dyb orange, BoligPortal-orange (fra logoet), lys orange og den mørke tekstfarve */
+  --p-deep: #CC4314;
+  --p-orange: #FF6633;
+  --p-mid: #FF8A5C;
+  --p-ink: #2B2A35;
+  --gradient: linear-gradient(135deg, var(--p-deep) 0%, var(--p-orange) 38%, var(--p-mid) 72%, var(--p-ink) 100%);
 
   /* Bevægelse: stærke kurver til UI. Brug altid disse tokens, aldrig hjemmelavede kurver. */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 
-  --font: "Figtree", "Helvetica Neue", Arial, sans-serif;
+  --font: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   --max: 72rem;
   --read: 40rem;
   --gutter: clamp(1.25rem, 4vw, 3rem);
@@ -59,54 +80,56 @@
 /* Mørkt tema: følger enhedens indstilling, indtil den besøgende vælger selv med knappen */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-  --bg: #1C1B23;
-  --soft: #2B2A35;
-  --soft-line: #45434F;
-  --card: #24232D;
+  --bg: #16151C;
+  --soft: #23222B;
   --ink: #F7F4F2;
   --muted: #B3B1BE;
-  --line: #34333F;
+  --line: #2F2E38;
   --plus: #5E5C69;
-  --rail: #45434F;
-  --field-border: #7E7C89;
-  --focus: #FF6633;
-  --hover: #2B2A35;
+  --rail: #3B3A45;
+  --field-border: #7E7C89; /* feltkant, 3,4:1 på --soft */
+  --focus: #FF8A5C;
+  --hover: rgb(247 244 242 / .05);
   --btn-hover: #E6E2DF;
   --tile: #F7F4F2;
-  --on-orange: #1C1B23;
+  --logo-filter: none; /* BoligPortals orange logo står fint på mørk baggrund */
   --accent: #FF6633;
-  --accent-big: #FF6633;
-  --deep: #111017;
-  --figure-shadow: drop-shadow(0 0 1.25rem rgb(179 177 190 / .22));
+  --accent-fg: #16151C;
+  --accent-hover: #FF8A5C;
+  --figure-glow: #45434F;
+  --figure-shadow: drop-shadow(0 0 1.25rem rgb(179 177 190 / .25));
   --s1: #FF6633; --s2: #FF8A5C; --s3: #FFB08A; --s4: #F7F4F2;
-  --pill-bg: #45434F;
-  --pill-shadow: 0 6px 16px rgb(0 0 0 / .45);
+  --g3: var(--s2); --g5: var(--p-mid);
+  --band-bg: #23222B;
+  --pill-bg: #3B3A45;
+  --pill-shadow: 0 8px 22px rgb(0 0 0 / .45);
   color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #1C1B23;
-  --soft: #2B2A35;
-  --soft-line: #45434F;
-  --card: #24232D;
+  --bg: #16151C;
+  --soft: #23222B;
   --ink: #F7F4F2;
   --muted: #B3B1BE;
-  --line: #34333F;
+  --line: #2F2E38;
   --plus: #5E5C69;
-  --rail: #45434F;
-  --field-border: #7E7C89;
-  --focus: #FF6633;
-  --hover: #2B2A35;
+  --rail: #3B3A45;
+  --field-border: #7E7C89; /* feltkant, 3,4:1 på --soft */
+  --focus: #FF8A5C;
+  --hover: rgb(247 244 242 / .05);
   --btn-hover: #E6E2DF;
   --tile: #F7F4F2;
-  --on-orange: #1C1B23;
+  --logo-filter: none; /* BoligPortals orange logo står fint på mørk baggrund */
   --accent: #FF6633;
-  --accent-big: #FF6633;
-  --deep: #111017;
-  --figure-shadow: drop-shadow(0 0 1.25rem rgb(179 177 190 / .22));
+  --accent-fg: #16151C;
+  --accent-hover: #FF8A5C;
+  --figure-glow: #45434F;
+  --figure-shadow: drop-shadow(0 0 1.25rem rgb(179 177 190 / .25));
   --s1: #FF6633; --s2: #FF8A5C; --s3: #FFB08A; --s4: #F7F4F2;
-  --pill-bg: #45434F;
-  --pill-shadow: 0 6px 16px rgb(0 0 0 / .45);
+  --g3: var(--s2); --g5: var(--p-mid);
+  --band-bg: #23222B;
+  --pill-bg: #3B3A45;
+  --pill-shadow: 0 8px 22px rgb(0 0 0 / .45);
   color-scheme: dark;
 }
 
@@ -124,15 +147,13 @@ body {
 }
 img { max-width: 100%; }
 a, button, input, textarea, label { touch-action: manipulation; }
-html { -webkit-tap-highlight-color: rgb(255 102 51 / .2); }
+html { -webkit-tap-highlight-color: rgb(255 102 51 / .15); }
 a { color: inherit; text-underline-offset: 3px; }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 p { margin: 0 0 1rem; }
-/* Overskrifter med versaler og tung vægt, som i PDF'erne */
-h1, h2, h3 { text-wrap: balance; }
-h1, h2 { text-transform: uppercase; font-weight: 800; letter-spacing: -.01em; }
-h2 { font-size: clamp(1.9rem, 4.6vw, 2.9rem); line-height: 1.05; margin: 0 0 1.25rem; }
-h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: -.01em; margin: 0 0 .4rem; }
+h1, h2, h3 { text-wrap: balance; letter-spacing: -.03em; }
+h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 600; line-height: 1.08; margin: 0 0 1.25rem; }
+h3 { font-size: 1.125rem; font-weight: 600; letter-spacing: -.01em; margin: 0 0 .4rem; }
 .center { text-align: center; margin-left: auto; margin-right: auto; }
 .muted { color: var(--muted); }
 .small { font-size: .95rem; }
@@ -153,7 +174,8 @@ h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: -.01em; margin: 0 0 
 }
 .skip:focus-visible { top: 1rem; }
 
-/* Top: står fast, så Kald til samtale altid er ét klik væk */
+/* Top */
+/* Toppen står fast, så booking altid er ét klik væk */
 .topbar {
   position: sticky; top: 0; z-index: 20; background: var(--bg);
   display: flex; justify-content: space-between; align-items: center; gap: 1rem;
@@ -162,17 +184,17 @@ h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: -.01em; margin: 0 0 
   box-shadow: 0 0 0 100vmax var(--bg), 0 1px 0 100vmax var(--line);
   clip-path: inset(0 -100vmax -1px);
 }
-.brand { display: flex; align-items: center; gap: .6rem; min-width: 0; text-decoration: none; font-weight: 600; }
+.brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 600; letter-spacing: -.01em; }
 .brand-mark { width: 28px; height: 28px; flex: none; }
 /* Kasper × BoligPortal: krydset står lille og dæmpet mellem memojien og logoet */
 .brand-x { color: var(--muted); font-size: 1rem; font-weight: 400; line-height: 1; }
-/* BoligPortals logo som vektorgrafik i deres orange. Det står kun som modtager ved siden af Kaspers memoji. */
-.logo { display: block; height: 1.9rem; width: auto; min-width: 0; }
+/* Logo: BoligPortals logo som vektorgrafik (SVG) i deres orange, med gennemsigtig baggrund */
+.logo { display: block; height: 1.7rem; width: auto; filter: var(--logo-filter); }
 
-/* Knapper: flade farver, sort og orange står lige stærkt */
+/* Knapper */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-  font: inherit; font-weight: 700; font-size: 1rem; line-height: 1.2;
+  font: inherit; font-weight: 600; font-size: 1rem; line-height: 1.2;
   background: var(--ink); color: var(--bg); text-decoration: none;
   padding: .95rem 1.6rem; border: 0; border-radius: 999px; cursor: pointer;
   transition: transform 160ms var(--ease-out), background-color 150ms ease;
@@ -180,26 +202,32 @@ h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: -.01em; margin: 0 0 
 .btn:hover { color: var(--bg); background: var(--btn-hover); }
 @media (hover: hover) and (pointer: fine) { .btn:hover { transform: translateY(-1px); } }
 .btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: .6; cursor: progress; transform: none; }
 .btn-small { font-size: .9rem; padding: .6rem 1.1rem; white-space: nowrap; }
-.btn-accent { background: var(--orange); color: var(--on-orange); }
-.btn-accent:hover { background: var(--orange-hover); color: var(--on-orange); }
-.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+/* Den røde knap ved siden af den sorte: begge er primære, så de står lige stærkt */
+.btn-accent { background: var(--accent); color: var(--accent-fg); }
+.btn-accent:hover { background: var(--accent-hover); color: var(--accent-fg); }
+.hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
 .top-actions { display: flex; align-items: center; gap: .5rem; flex: none; }
 /* Små knapper i toppen får et usynligt trykområde på mindst 44 px på mobil */
 .theme-toggle, .btn-small { position: relative; }
 @media (pointer: coarse) {
   .theme-toggle::after, .btn-small::after { content: ""; position: absolute; inset: -6px; }
 }
-@media (max-width: 30rem) {
+@media (max-width: 26rem) {
   .brand .logo { height: 1.45rem; }
-  .brand { gap: .4rem; }
+  .brand { gap: .45rem; }
+  .theme-toggle .t-opt { width: 1.7rem; height: 1.7rem; }
   .brand-mark { width: 24px; height: 24px; }
   .btn-small { font-size: .85rem; padding: .55rem .85rem; }
-  /* Temaet følger telefonen, så kontakten skjules, og der bliver plads til knappen */
-  .theme-toggle:not([hidden]) { display: none; }
 }
-@media (max-width: 22.4rem) {
-  .brand .logo { height: 1.25rem; }
+/* Smalle skærme: temaet følger telefonen, så kontakten skjules, og der bliver plads til sprog og knap */
+@media (max-width: 30rem) {
+  .theme-toggle:not([hidden]) { display: none; }
+  .lang-toggle a { min-width: 1.9rem; height: 1.7rem; padding: 0 .35rem; }
+}
+@media (max-width: 24rem) {
+  .brand-mark, .brand-x { display: none; }
 }
 /* Temakontakt: sol og måne side om side, det aktive tema er markeret */
 .theme-toggle {
@@ -207,6 +235,18 @@ h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: -.01em; margin: 0 0 
   background: var(--soft); border: 1px solid var(--line); border-radius: 999px;
 }
 .theme-toggle[hidden] { display: none; }
+/* Sprogvælger: DA og EN side om side, det aktive sprog er markeret ligesom temaet */
+.lang-toggle {
+  display: flex; align-items: center; gap: 2px; padding: 3px;
+  background: var(--soft); border: 1px solid var(--line); border-radius: 999px;
+}
+.lang-toggle a {
+  display: grid; place-items: center; min-width: 2.1rem; height: 1.9rem; padding: 0 .45rem; border-radius: 999px;
+  color: var(--muted); font-size: .8rem; font-weight: 600; letter-spacing: .03em; text-decoration: none;
+  transition: background-color .15s, color .15s;
+}
+.lang-toggle a:hover { color: var(--ink); }
+.lang-toggle a[aria-current="page"] { background: var(--bg); color: var(--ink); box-shadow: 0 1px 3px rgb(43 42 53 / .15); }
 .t-opt {
   display: grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 50%;
   color: var(--muted); transition: background-color .15s, color .15s;
@@ -217,79 +257,84 @@ h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: -.01em; margin: 0 0 
   background: var(--bg); color: var(--ink); box-shadow: 0 1px 3px rgb(43 42 53 / .15);
 }
 
-/* Hero */
+/* Gradient-rammer */
+.frame { background: var(--gradient); border-radius: var(--radius); padding: .6rem; }
+.g1 { background: linear-gradient(160deg, var(--p-deep), var(--p-orange)); }
+.g2 { background: linear-gradient(160deg, var(--p-orange), var(--p-mid)); }
+.g3 { background: linear-gradient(160deg, var(--p-mid), var(--p-ink)); }
+
+/* Hero: fælles opsætning, som tak-siden også bruger */
 .hero {
   padding: 3.5rem var(--gutter) 5rem;
   display: flex; flex-direction: column; align-items: center; text-align: center;
 }
 h1 {
-  font-size: clamp(2.2rem, 7vw, 4.6rem); line-height: 1.02;
-  margin: 0 0 1.25rem; max-width: 16ch;
+  font-size: clamp(2.4rem, 8vw, 5rem); font-weight: 600; line-height: 1.02; letter-spacing: -.045em;
+  margin: 0 0 1.25rem; max-width: 14ch;
 }
 .lede { font-size: clamp(1.1rem, 2.2vw, 1.25rem); color: var(--muted); max-width: 36rem; margin: 0 0 2rem; }
-.lede-small { color: var(--muted); max-width: 34rem; margin-bottom: 2rem; }
+.lede-small { color: var(--muted); max-width: 32rem; margin-bottom: 2rem; }
 
-/* Hero: overskriften til venstre og memojien til højre, der peger på den.
-   .hero-copy er "display: contents", så overskrift, underlinje og knapper kan placeres hver for sig i gitteret. */
+/* Hero: "Hey Kasper, byg os lige …", og memojien viser den agent, man vælger i den buede bar.
+   Agentens navn kan glide fra én farve til den næste. */
+@property --glow { syntax: "<color>"; inherits: true; initial-value: #CC4314; }
 .hero-pick {
-  --glow: var(--s1);
+  --glow: var(--g3);
   position: relative; isolation: isolate; overflow: clip;
   padding-top: 1.75rem; padding-bottom: 1.5rem;
+  transition: --glow 400ms ease;
 }
-.hero-pick[data-glow="1"] { --glow: var(--s1); }
-.hero-pick[data-glow="2"] { --glow: var(--s2); }
-.hero-pick[data-glow="3"] { --glow: var(--s3); }
-.hero-pick[data-glow="4"] { --glow: var(--s1); }
-.hero-pick[data-glow="5"] { --glow: var(--s2); }
+.hero-pick[data-glow="1"] { --glow: var(--s3); }
+.hero-pick[data-glow="2"] { --glow: var(--s1); }
+.hero-pick[data-glow="3"] { --glow: var(--g3); }
+.hero-pick[data-glow="4"] { --glow: var(--s4); }
+.hero-pick[data-glow="5"] { --glow: var(--g5); }
 @media (min-width: 40rem) { .hero-pick { padding-top: 2.75rem; } }
-.hero-top {
-  display: grid; grid-template-columns: minmax(0, 1fr) 5.25rem; gap: 0 .75rem;
-  width: 100%; max-width: 66rem; text-align: left;
-}
-.hero-copy { display: contents; }
+
+/* Overskriften: tilbuddet i Geist, med slutningen fremhævet i en tynd kursiv serif som "hey" i logoet.
+   Fremhævningen tager agentens farve, så den skifter med det, I vælger i chatfeltet. */
 .hero-title {
-  grid-column: 1; grid-row: 1; align-self: end;
-  font-size: clamp(1.75rem, 7.4vw, 4.1rem); max-width: 17ch; margin: 0 0 1.25rem;
+  --tint: color-mix(in srgb, var(--glow) 78%, var(--ink));
+  font-size: clamp(2.25rem, 6.2vw, 4.6rem); max-width: 19ch; margin: 0 0 1.25rem;
 }
-.hero-title .accent { font-style: normal; color: var(--accent-big); }
-.hero-memoji {
-  grid-column: 2; grid-row: 1; align-self: end; justify-self: center;
-  display: block; width: 100%; height: auto; margin-bottom: 1rem; filter: var(--figure-shadow);
+.hero-title .accent {
+  font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em;
+  font-size: 1.1em; line-height: .9; color: var(--tint); transition: color 200ms ease;
 }
-.hero-lede { grid-column: 1 / -1; max-width: 40rem; margin-bottom: 1.75rem; }
-.hero-actions { grid-column: 1 / -1; }
-@media (min-width: 48rem) {
-  .hero-top { grid-template-columns: minmax(0, 1fr) clamp(9rem, 18vw, 14rem); gap: 0 clamp(2rem, 5vw, 4rem); align-items: center; }
-  .hero-title { align-self: end; }
-  .hero-memoji { grid-row: 1 / span 3; align-self: center; margin: 0; }
-  .hero-lede, .hero-actions { grid-column: 1; }
-}
+.hero-lede { max-width: 38rem; margin-bottom: 1.75rem; }
 .nowrap, .composer-typed { white-space: nowrap; }
 
-/* Chatfeltet: "Hey Kasper, byg os lige …", og svaret står under det */
-.chat { position: relative; width: 100%; max-width: 40rem; margin-top: 3.5rem; display: flex; flex-direction: column; align-items: center; }
+/* Chatfeltet: H1, underlinje og knap fører ned i feltet, og svaret står under det */
+.chat { position: relative; width: 100%; max-width: 40rem; margin-top: 3rem; display: flex; flex-direction: column; align-items: center; }
+/* Den originale glød i agentens farve bag feltet og svaret */
+.chat::before {
+  content: ""; position: absolute; z-index: -1; left: 50%; top: 4rem; width: min(140%, 52rem); height: 70%;
+  translate: -50% 0; pointer-events: none;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--glow) 16%, transparent), transparent);
+  transition: background 200ms ease;
+}
 .composer {
   width: 100%; text-align: left;
-  background: var(--card); border: 1.5px solid var(--soft-line); border-radius: var(--radius);
-  box-shadow: 0 12px 30px rgb(43 42 53 / .07);
+  background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: 0 1px 2px rgb(43 42 53 / .04), 0 14px 36px rgb(43 42 53 / .08);
   padding: 1rem 1rem .7rem 1.25rem;
 }
 .composer-input {
   margin: 0; min-height: 3.6em; color: var(--ink);
-  font-size: clamp(1.05rem, 2.6vw, 1.3rem); line-height: 1.45; font-weight: 500;
+  font-size: clamp(1.05rem, 2.6vw, 1.3rem); line-height: 1.45; letter-spacing: -.01em;
 }
 .composer-caret {
   display: inline-block; width: 2px; height: 1.15em; margin-left: 2px; vertical-align: -.2em;
-  background: var(--orange); opacity: 0;
+  background: var(--accent); opacity: 0;
 }
 .composer.is-typing .composer-caret { opacity: 1; }
 .composer.is-typing:not(.is-busy) .composer-caret { animation: caret 1s steps(1) infinite; }
 @keyframes caret { 50% { opacity: 0; } }
 .composer-bar { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-top: .5rem; }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .composer { box-shadow: 0 14px 36px rgb(0 0 0 / .45); }
+  :root:not([data-theme="light"]) .composer { border-color: var(--rail); box-shadow: 0 14px 36px rgb(0 0 0 / .5); }
 }
-:root[data-theme="dark"] .composer { box-shadow: 0 14px 36px rgb(0 0 0 / .45); }
+:root[data-theme="dark"] .composer { border-color: var(--rail); box-shadow: 0 14px 36px rgb(0 0 0 / .5); }
 /* Prikkerne er "skriver"-indikatoren i højre side, ligesom lydknappen i en chat */
 .composer-voice {
   flex: none; display: grid; place-items: center; width: 2.6rem; height: 2.6rem; margin-left: auto;
@@ -345,7 +390,7 @@ h1 {
 
 /* Svaret: memojien, agentens navn og beskrivelse */
 .scene {
-  --fig: min(52vw, 16rem, 30svh);
+  --fig: min(52vw, 17rem, 30svh);
   position: relative; width: 100%; max-width: 34rem; margin-top: 1.25rem;
 }
 
@@ -362,9 +407,9 @@ h1 {
 @keyframes fig-float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-9px) rotate(-1deg); } }
 
 .scene-title {
-  --tint: color-mix(in srgb, var(--glow) 82%, var(--ink));
-  margin: .35rem 0 .35rem; color: var(--tint); text-transform: uppercase;
-  font-size: clamp(1.8rem, 7vw, 2.6rem); font-weight: 800; line-height: 1.05; letter-spacing: -.01em;
+  --tint: color-mix(in srgb, var(--glow) 78%, var(--ink));
+  margin: .35rem 0 .35rem; color: var(--tint);
+  font-size: clamp(2rem, 8vw, 3rem); font-weight: 700; line-height: 1.05; letter-spacing: -.045em;
 }
 .scene-text { margin: 0 auto; max-width: 25rem; color: var(--muted); font-size: 1rem; line-height: 1.5; }
 @media (min-width: 40rem) { .scene-text { font-size: 1.1rem; max-width: 29rem; } }
@@ -397,9 +442,8 @@ h1 {
 
 /* Sektioner */
 .section { padding: clamp(4rem, 7vw, 6rem) var(--gutter); }
-.section-kicker { margin: 0 0 .75rem; color: var(--accent); font-size: .85rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 
-/* Problemet: overskrift og tekst side om side på desktop, og under dem opgaverne sat over for teamet */
+/* Problemet: overskrift og tekst side om side på desktop */
 .split { display: grid; gap: 1rem 4rem; }
 .split h2 { margin: 0; }
 .split-text { color: var(--muted); font-size: 1.15rem; margin: 0; max-width: var(--read); }
@@ -409,158 +453,55 @@ h1 {
   .split { grid-template-columns: 1fr 1fr; align-items: start; }
   .split-text { margin-top: .5rem; }
 }
-.board {
-  display: grid; gap: 1.5rem; margin-top: 3rem; padding: clamp(1.25rem, 3vw, 2.25rem);
-  border-radius: 28px; background: var(--soft); border: 1px solid var(--soft-line);
-}
-@media (min-width: 56rem) { .board { grid-template-columns: minmax(0, 1.35fr) auto minmax(0, 1fr); align-items: center; gap: 2rem; } }
-.board-label { margin: 0 0 1rem; color: var(--muted); font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.chips, .people { list-style: none; margin: 0; padding: 0; }
-.chips { display: flex; flex-wrap: wrap; gap: .5rem; }
-.chips li {
-  padding: .5rem .95rem; border-radius: 999px; background: var(--card); border: 1px solid var(--soft-line);
-  font-weight: 700; font-size: .95rem; line-height: 1.3;
-}
-.board-vs {
-  justify-self: center; display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border-radius: 50%;
-  background: var(--orange); color: var(--on-orange); font-size: .85rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
-}
-.people { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; }
-.people li {
-  display: flex; flex-direction: column; align-items: center; gap: .35rem; padding: .9rem .25rem .8rem;
-  border-radius: 16px; background: var(--card); border: 1px solid var(--soft-line);
-  color: var(--muted); font-size: .78rem; font-weight: 700; text-align: center; line-height: 1.2;
-}
-.people svg { color: var(--ink); }
-.people .is-lead { background: var(--orange); border-color: var(--orange); color: var(--on-orange); }
-.people .is-lead svg { color: var(--on-orange); }
 
-/* Motoren: otte kort. Syv agenter, hver med opgaven fra jobopslaget, og specialisten, der godkender. */
-.agent-grid {
-  list-style: none; margin: 1rem 0 0; padding: 0;
-  display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
-}
-@media (min-width: 66rem) { .agent-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.agent-card {
-  display: flex; flex-direction: column; min-width: 0; padding: 1.4rem 1.35rem 1.25rem;
-  border-radius: 20px; background: var(--card); border: 1px solid var(--soft-line);
-}
-.agent-icon {
-  display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%;
-  background: var(--soft); color: var(--accent); border: 1px solid var(--soft-line);
-}
-.agent-name { margin: 1rem 0 .4rem; font-size: 1.1rem; font-weight: 800; }
-.agent-text { flex: 1; margin: 0 0 1.1rem; color: var(--muted); font-size: .95rem; line-height: 1.5; }
-.agent-task { margin: 0; padding-top: .85rem; border-top: 1.5px dashed var(--soft-line); font-size: .85rem; font-weight: 600; line-height: 1.4; }
-.agent-task span { display: block; margin-bottom: .2rem; color: var(--accent); font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.agent-card-human { background: var(--orange); border-color: var(--orange); color: var(--on-orange); }
-.agent-card-human .agent-icon { background: var(--on-orange); color: var(--orange); border-color: var(--on-orange); }
-.agent-card-human .agent-text, .agent-card-human .agent-task span { color: var(--on-orange); }
-.agent-card-human .agent-task { border-top-color: var(--on-orange); }
-.engine-note {
-  max-width: 46rem; margin: 2.75rem auto 0; text-align: center;
-  font-size: clamp(1.15rem, 2.3vw, 1.45rem); font-weight: 700; line-height: 1.4;
-}
-
-/* Systemerne: Studio og Tasks side om side med skærmbilleder, og vejen fra opgave til agent og tilbage */
-.sys-grid { display: grid; gap: 1.25rem; margin-top: 1rem; }
-@media (min-width: 56rem) { .sys-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.sys-card {
-  display: flex; flex-direction: column; min-width: 0; padding: clamp(1.4rem, 3vw, 2.25rem);
-  border-radius: 28px; background: var(--soft); border: 1px solid var(--soft-line);
-}
-.sys-kicker { margin: 0; color: var(--accent); font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.sys-name { margin: .25rem 0 1.25rem; font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800; text-transform: uppercase; letter-spacing: -.01em; }
-.sys-shot {
-  margin: 0 0 1.5rem; overflow: hidden;
-  border-radius: 14px; border: 1px solid var(--soft-line); background: #FFFFFF;
-}
-.sys-shot img { display: block; width: 100%; height: auto; }
-.sys-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
-.sys-list li { position: relative; padding-left: 1.4rem; font-size: .98rem; line-height: 1.55; }
-.sys-list li::before { content: ""; position: absolute; left: 0; top: .5em; width: .55rem; height: .55rem; border-radius: 2px; background: var(--orange); }
-.flow-title { margin: 1.75rem 0 .75rem; color: var(--accent); font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
-.flow li {
-  position: relative; display: flex; align-items: center; gap: .85rem; min-width: 0; padding: 1rem 1.1rem;
-  border-radius: 16px; background: var(--deep); color: var(--deep-fg); font-weight: 700; font-size: .95rem; line-height: 1.35;
-}
-.flow-num {
-  flex: none; display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%;
-  background: var(--orange); color: #2B2A35; font-weight: 800;
-}
-
-/* Beviserne: fire store tal og en liste med de øvrige resultater */
-.cases-head { text-align: center; }
-.cases-head h2 { margin: 0 auto .75rem; max-width: none; font-size: clamp(2rem, 5.2vw, 3.4rem); line-height: 1.04; }
-.cases-head p { margin: 0 auto; color: var(--muted); max-width: var(--read); }
-.proof-grid {
-  list-style: none; margin: 3rem 0 0; padding: 0;
-  display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
-}
-@media (min-width: 66rem) { .proof-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.proof-tile {
-  display: flex; flex-direction: column; min-width: 0; min-height: 14rem; padding: 1.6rem 1.5rem 1.4rem;
-  border-radius: 24px; background: var(--soft); border: 1px solid var(--soft-line);
-}
-.proof-num { margin: 0 0 .9rem; color: var(--accent-big); font-size: clamp(2.6rem, 4.4vw, 3.4rem); font-weight: 900; line-height: 1; letter-spacing: -.02em; white-space: nowrap; }
-.proof-text { flex: 1; margin: 0 0 1.25rem; font-weight: 500; line-height: 1.45; }
-.proof-where { margin: 0; color: var(--muted); font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.proof-tile-accent { background: var(--orange); border-color: var(--orange); color: var(--on-orange); }
-.proof-tile-accent .proof-num, .proof-tile-accent .proof-where { color: var(--on-orange); }
-.proof-list {
-  list-style: none; margin: 1rem 0 0; padding: 0;
-  display: grid; gap: .75rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
-}
-.proof-list li {
-  padding: 1rem 1.15rem; border-radius: 16px; background: var(--card); border: 1px solid var(--soft-line);
-  color: var(--muted); font-size: .95rem; line-height: 1.45;
-}
-.proof-list strong { color: var(--ink); font-weight: 700; }
-.proof-list span { display: block; margin-top: .45rem; color: var(--accent); font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-
-/* De første 90 dage: lys orange sektion med tre kort, der stables, når man scroller. Kortene går fra lys til mørk.
+/* Sådan vil jeg arbejde: lys orange sektion med fire kort, der stables, når man scroller. Kortene går fra lys til mørk,
+   så det sidste kort med booking står stærkest.
    Hvert kort sætter sig fast under toppen, og det næste glider op over det. main.js skalerer kortene:
    det kommende vokser på plads, og de dækkede krymper og bliver lidt mørkere. Uden JS stables de bare. */
 .process {
-  --pbg: #FFF1EB; --ph: var(--ink); --pintro: var(--muted); --stick: 5.25rem; --peek: 1.5rem;
+  --pbg: #FFF4EF; --ph: var(--ink); --pintro: var(--muted); --stick: 5.25rem; --peek: 1.5rem;
   background: var(--pbg); color: var(--ph);
   box-shadow: 0 0 0 100vmax var(--pbg); clip-path: inset(0 -100vmax);
 }
-:root[data-theme="dark"] .process { --pbg: #24232D; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .process { --pbg: #24232D; } }
+:root[data-theme="dark"] .process { --pbg: #221A18; --ph: #fff; --pintro: #D6CDCA; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .process { --pbg: #221A18; --ph: #fff; --pintro: #D6CDCA; } }
 .process h2 { color: var(--ph); text-align: center; }
 .process-intro { color: var(--pintro); max-width: 36rem; margin: 0 auto 3rem; font-size: 1.1rem; text-align: center; }
 .pstack { list-style: none; margin: 0 auto; padding: 0; display: grid; gap: 2rem; max-width: 64rem; }
 .pcard {
-  --card-bg: #2B2A35; --fg: #FFFFFF; --sub: #D9D7E0; --step-bg: #FF6633; --step-fg: #2B2A35; --art: #FF6633; --btn-line: #8E8C99;
-  --s: 1; --b: 1;
+  --card: #2B2A35; --fg: #fff; --sub: rgb(255 255 255 / .84); --blob: rgb(255 255 255 / .06);
+  --dot: #FFD3C2; --dot-fg: #2B2A35; --art: #FF6633; --s: 1; --b: 1;
   position: sticky; top: calc(var(--stick) + var(--i) * var(--peek));
   display: grid; gap: 1.5rem; overflow: hidden; isolation: isolate;
   padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.5rem, 3.5vw, 2.75rem);
-  border-radius: 24px; background: var(--card-bg); color: var(--fg);
-  border: 1px solid #FFD3C2;
-  box-shadow: 0 -6px 20px rgb(43 42 53 / .08);
+  border-radius: 24px; background: var(--card); color: var(--fg);
+  border: 1px solid rgb(255 102 51 / .12);
+  box-shadow: 0 -6px 24px rgb(43 42 53 / .10), 0 1px 2px rgb(43 42 53 / .06);
   transform: scale(var(--s)); transform-origin: 50% 0; filter: brightness(var(--b));
 }
-.pcard[data-tone="white"]  { --card-bg: #FFFFFF; --fg: #2B2A35; --sub: #55535F; --step-bg: #FFF1EB; --step-fg: #CC4314; --art: #FFF1EB; --btn-line: #B9B6C0; }
-.pcard[data-tone="orange"] { --card-bg: #FF6633; --fg: #2B2A35; --sub: #2B2A35; --step-bg: #2B2A35; --step-fg: #FFFFFF; --art: #FFF1EB; --btn-line: #2B2A35; }
-.pcard[data-tone="deep"]   { border-color: #2B2A35; }
-.pcard-body { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
-.pcard-step {
-  display: inline-block; margin-bottom: clamp(1.25rem, 3vw, 1.75rem); padding: .4rem .85rem; border-radius: 999px;
-  background: var(--step-bg); color: var(--step-fg); font-size: .8rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+.pcard[data-tone="orange"] { --card: #FF6633; --fg: #2B2A35; --sub: #2B2A35; --dot: #2B2A35; --dot-fg: #FFFFFF; --art: #FFE3D6; --blob: rgb(255 255 255 / .14); }
+.pcard[data-tone="peach"]  { --card: #FFE3D6; --fg: #2B2A35; --sub: #4A4853; --dot: #2B2A35; --dot-fg: #fff; --art: #FF6633; --blob: rgb(255 102 51 / .08); }
+.pcard[data-tone="white"]  { --card: #FFFFFF; --fg: #2B2A35; --sub: #55535F; --dot: #FF6633; --dot-fg: #2B2A35; --art: #FFE3D6; --blob: rgb(255 102 51 / .05); }
+/* Den store, svage klat i baggrunden */
+.pcard::before {
+  content: ""; position: absolute; z-index: -1; left: 4%; top: -18%; width: 52%; aspect-ratio: 1.35;
+  border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%; background: var(--blob);
 }
-.pcard-title { font-weight: 800; text-transform: uppercase; font-size: clamp(1.8rem, 3.4vw, 2.6rem); line-height: 1.02; letter-spacing: -.01em; margin: 0 0 .9rem; color: var(--fg); }
-.pcard-text { color: var(--sub); font-size: 1rem; line-height: 1.6; max-width: 34rem; margin: 0 0 1.5rem; }
+.pcard-body { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.pcard-icon {
+  display: grid; place-items: center; width: 3.25rem; height: 3.25rem; border-radius: 50%;
+  background: var(--dot); color: var(--dot-fg); margin-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+.pcard-title { font-family: var(--serif); font-weight: 400; font-size: clamp(1.9rem, 3.2vw, 2.4rem); line-height: 1.05; letter-spacing: -.01em; margin: 0 0 .9rem; color: var(--fg); }
+.pcard-text { color: var(--sub); font-size: 1rem; line-height: 1.6; max-width: 32rem; margin: 0 0 1.5rem; }
 .pcard-btn {
   display: inline-flex; align-items: center; gap: .6rem; min-height: 3rem; padding: .7rem 1.4rem;
-  border-radius: 999px; border: 1.5px solid var(--btn-line);
-  color: var(--fg); font-weight: 700; text-decoration: none; transition: background-color 200ms ease, border-color 200ms ease;
+  border-radius: 10px; border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent);
+  color: var(--fg); font-weight: 600; text-decoration: none; transition: background 200ms ease, border-color 200ms ease;
 }
 .pcard-btn svg { transition: transform 200ms var(--ease-out); }
 @media (hover: hover) and (pointer: fine) {
-  .pcard-btn:hover { border-color: var(--fg); }
+  .pcard-btn:hover { background: color-mix(in srgb, var(--fg) 8%, transparent); border-color: color-mix(in srgb, var(--fg) 55%, transparent); }
   .pcard-btn:hover svg { transform: translateX(3px); }
 }
 .pcard-btn:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; }
@@ -571,11 +512,11 @@ h1 {
   border-radius: 58% 42% 46% 54% / 50% 60% 40% 50%; background: var(--art);
 }
 .pcard-art img { width: 100%; height: auto; }
-/* Mobil: memojien står lille i øverste højre hjørne, så hvert kort kan være på skærmen */
+/* Mobil: memojien står lille i øverste højre hjørne ud for ikonet, så hvert kort kan være på skærmen */
 @media (max-width: 47.99rem) {
   .process { --peek: .75rem; --stick: 4.75rem; }
   .pcard { gap: 0; }
-  .pcard-step { margin-bottom: 4.25rem; }
+  .pcard-icon { width: 2.75rem; height: 2.75rem; margin-bottom: 3.5rem; }
   .pcard-text { font-size: 1rem; margin-bottom: 1.25rem; }
   .pcard-art { position: absolute; right: .25rem; top: .5rem; width: 7rem; }
 }
@@ -583,23 +524,84 @@ h1 {
   .pcard { grid-template-columns: 1.3fr .7fr; align-items: center; min-height: min(22rem, calc(100vh - var(--stick) - 6rem)); }
 }
 
-/* Ledelse */
+/* Om */
 .about { display: grid; gap: 2.5rem; align-items: center; }
+/* Den pegende memoji står frit uden flade, ligesom ved citatet. I mørkt tema har den samme bløde lysning bag sig. */
 .about-figure { width: min(100%, 18rem); margin-inline: auto; }
 .memoji-about { display: block; width: auto; height: 20rem; margin-inline: auto; filter: var(--figure-shadow); }
 @media (min-width: 52rem) { .about-figure { width: 22rem; margin-inline: 0; } }
 .about-text { max-width: var(--read); min-width: 0; }
 .about-text p { color: var(--muted); }
-.about-text p:last-child { color: var(--ink); font-weight: 700; }
 @media (min-width: 52rem) {
   .about { grid-template-columns: 22rem 1fr; gap: 4rem; }
 }
 
+/* Cases: bento-gitter med ét højt kort til venstre og to halvt så høje kort stablet til højre */
+.cases-head { text-align: center; }
+.cases-head h2 { margin: 0 auto .75rem; max-width: none; font-size: clamp(2.25rem, 5.5vw, 3.75rem); line-height: 1.04; letter-spacing: -.045em; }
+.cases-head p { margin: 0 auto; color: var(--muted); max-width: var(--read); }
+.case-grid { list-style: none; padding: 0; margin: 3rem 0 0; display: grid; gap: 1.25rem; }
+@media (min-width: 40rem) {
+  .case-bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: minmax(18rem, auto); }
+  .case-tall { grid-row: span 2; }
+}
+.case-card {
+  display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0;
+  min-height: 18rem; padding: 1.75rem 1.5rem 1.5rem; background: var(--soft); border-radius: 28px;
+}
+.case-title { margin: 0; font-size: 1.2rem; font-weight: 600; letter-spacing: -.02em; }
+.case-label { margin: .15rem 0 0; font-size: .9rem; color: var(--muted); }
+.case-visual { flex: 1; align-self: stretch; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .35rem; padding: 1.5rem 0; position: relative; }
+.case-num { margin: 0; font-size: clamp(3rem, 7vw, 4.25rem); font-weight: 600; line-height: 1; letter-spacing: -.05em; }
+.case-unit { margin: 0; max-width: 16rem; font-size: .95rem; color: var(--muted); }
+.case-note { margin: 0; max-width: 22rem; font-size: .85rem; color: var(--muted); }
+.case-stat { margin: 0; font-size: .95rem; font-weight: 600; letter-spacing: -.01em; }
+/* Illustrationer: rene SVG'er, der tager farverne fra temaet (stamtræet i HeyOtto, sitehierarkiet og browservinduet) */
+.case-svg { display: block; align-self: stretch; width: 100%; height: auto; max-width: 20rem; margin: 0 auto .75rem; overflow: visible; }
+.case-tall .case-svg { max-width: 30rem; }
+.cv-node { fill: var(--bg); stroke: var(--line); stroke-width: 1.5; }
+.cv-lead { fill: var(--bg); stroke: var(--accent); stroke-width: 2; }
+.cv-line { fill: none; stroke: var(--rail); stroke-width: 1.5; stroke-linecap: round; }
+.cv-face, .cv-ink { fill: var(--ink); }
+.cv-eye { fill: var(--bg); }
+.cv-accent { fill: var(--accent); }
+.cv-rail { fill: var(--rail); }
+.cv-soft { fill: var(--soft); }
+.cv-label { fill: var(--muted); font-family: var(--font); font-size: 10px; font-weight: 600; text-anchor: middle; }
+.cv-text { fill: var(--ink); font-family: var(--font); font-size: 11px; font-weight: 600; }
+
+/* Citat: stort citat i serif og memojien frit på hver side. Billederne er beskåret til overkroppen og fader ud forneden,
+   så de står på samme grundlinje under citatet. */
+.quote { display: grid; gap: 2.5rem 2rem; align-items: end; justify-items: center; padding-block: 6rem; }
+.quote-body { margin: 0; text-align: center; max-width: 36rem; align-self: center; }
+.quote-body blockquote { margin: 0; }
+.quote-body blockquote p {
+  margin: 0; font-family: var(--serif); font-weight: 400; letter-spacing: -.01em;
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem); line-height: 1.18; text-wrap: balance;
+}
+.quote-body figcaption { margin-top: 1.25rem; color: var(--muted); font-size: .95rem; }
+.quote-name { color: var(--ink); font-weight: 600; }
+.quote-img img { display: block; width: 100%; height: auto; filter: var(--figure-shadow); }
+.quote-img-left { width: min(100%, 9rem); }
+.quote-img-right { width: min(100%, 7rem); }
+/* På mobil står citatet øverst og billederne side om side under det */
+@media (max-width: 55.99rem) {
+  .quote { grid-template-columns: 1fr 1fr; }
+  .quote-body { grid-column: 1 / -1; grid-row: 1; }
+  .quote-img-left { justify-self: end; }
+  .quote-img-right { justify-self: start; }
+}
+@media (min-width: 56rem) {
+  .quote { grid-template-columns: 1fr minmax(0, 36rem) 1fr; }
+  .quote-img-left { width: clamp(10rem, 16vw, 15rem); justify-self: start; }
+  .quote-img-right { width: clamp(7.5rem, 11vw, 10.5rem); justify-self: end; }
+}
+
 /* Værktøjer: prikket flade med en stablet flise i midten og værktøjerne spredt rundt om */
 .tools-stage {
-  position: relative; margin-top: 1rem; border-radius: var(--radius);
+  position: relative; margin-top: 2.5rem; border-radius: var(--radius);
   display: flex; flex-direction: column; align-items: center; gap: 2rem; padding: 2rem 1rem;
-  background-image: radial-gradient(var(--plus) 1px, transparent 1.6px);
+  background-image: radial-gradient(color-mix(in srgb, var(--plus) 55%, transparent) 1px, transparent 1.6px);
   background-size: 18px 18px;
 }
 .tools-stack { width: min(100%, 240px); height: auto; }
@@ -633,9 +635,10 @@ h1 {
 .has-field .tool.is-hit .tool-name { color: var(--ink); }
 .tool-name { transition: color 200ms ease; }
 @keyframes tool-pop { 40% { scale: 1.1; } }
-.tool-name { font-size: .85rem; font-weight: 600; color: var(--muted); text-align: center; }
+.tool-name { font-size: .85rem; font-weight: 500; color: var(--muted); text-align: center; }
 .t1 { --r: -6deg; } .t2 { --r: 5deg; } .t3 { --r: -3deg; } .t4 { --r: 7deg; }
 .t5 { --r: 4deg; } .t6 { --r: -7deg; } .t7 { --r: 6deg; } .t8 { --r: -4deg; }
+.t9 { --r: 5deg; } .t10 { --r: -5deg; } .t11 { --r: 4deg; }
 
 @media (min-width: 52rem) {
   .tools-stage { min-height: 32rem; justify-content: center; padding: 3rem 2rem; }
@@ -651,40 +654,63 @@ h1 {
   .t6 { right: 25%; top: 28%; }
   .t7 { right: 6%;  top: 55%; }
   .t8 { right: 22%; top: 73%; }
+  .t9 { left: 38%; top: 2%; }
+  .t10 { right: 38%; top: 84%; }
+  .t11 { left: 38%; top: 84%; }
 }
 
-/* FAQ: flade kort med orange kant. Spørgsmålene er <details>, så de virker uden JS. Kun ét svar er åbent ad gangen (name="faq"). */
-.faq { display: grid; gap: 2.5rem; align-items: start; }
+/* FAQ: glasagtige kort (halvgennemsigtige med sløring) på bløde, slørede farveklatter i orange og fersken.
+   Spørgsmålene er <details>, så de virker uden JS og kan læses af søgemaskiner. Kun ét svar er åbent ad gangen (name="faq"). */
+.faq {
+  --glass: rgb(255 255 255 / .62); --glass-line: rgb(255 255 255 / .85); --glass-shadow: 0 1px 2px rgb(43 42 53 / .05), 0 10px 30px rgb(43 42 53 / .08);
+  --faq-blob1: #FFC2A8; --faq-blob2: #FFD9A6; --faq-blob3: #FFE3D6;
+  --faq-btn-fg: #fff;
+  position: relative; isolation: isolate;
+  display: grid; gap: 2.5rem; align-items: start;
+}
+:root[data-theme="dark"] .faq { --faq-btn-fg: #16151C; --glass: rgb(35 34 43 / .55); --glass-line: rgb(255 255 255 / .10); --glass-shadow: 0 10px 30px rgb(0 0 0 / .35); --faq-blob1: #7A2E14; --faq-blob2: #5A3A10; --faq-blob3: #3A2420; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .faq { --faq-btn-fg: #16151C; --glass: rgb(35 34 43 / .55); --glass-line: rgb(255 255 255 / .10); --glass-shadow: 0 10px 30px rgb(0 0 0 / .35); --faq-blob1: #7A2E14; --faq-blob2: #5A3A10; --faq-blob3: #3A2420; } }
+/* De slørede klatter bag glasset */
+.faq-glow { position: absolute; inset: 0; z-index: -1; pointer-events: none; filter: blur(60px); opacity: .7; }
+.faq-glow {
+  background:
+    radial-gradient(28% 34% at 18% 62%, var(--faq-blob1), transparent 70%),
+    radial-gradient(26% 30% at 72% 22%, var(--faq-blob2), transparent 70%),
+    radial-gradient(30% 34% at 82% 82%, var(--faq-blob3), transparent 70%);
+}
 .faq-side { display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; min-width: 0; }
 .faq-side h2 { margin: 0; }
-.faq-eyebrow { display: inline-flex; align-items: center; gap: .5rem; margin: 0; font-size: .85rem; font-weight: 800; letter-spacing: .08em; color: var(--ink); }
-.faq-eyebrow span { width: .55rem; height: .55rem; border-radius: 50%; background: var(--orange); }
-.faq-card, .faq-item { background: var(--card); border: 1px solid var(--soft-line); }
-.faq-card { width: 100%; max-width: 26rem; border-radius: 20px; padding: 1.75rem; margin-top: .75rem; background: var(--soft); }
-.faq-avatar { display: block; width: 4.25rem; height: 4.25rem; border-radius: 50%; object-fit: cover; margin-bottom: 1.25rem; border: 3px solid var(--orange); }
-.faq-card-title { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: -.01em; margin: 0 0 .6rem; }
+.faq-eyebrow { display: inline-flex; align-items: center; gap: .5rem; margin: 0; font-size: .95rem; font-weight: 500; color: var(--ink); }
+.faq-eyebrow span { width: .5rem; height: .5rem; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
+.faq-card, .faq-item {
+  background: var(--glass); border: 1px solid var(--glass-line); box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
+}
+.faq-card { width: 100%; max-width: 26rem; border-radius: 20px; padding: 1.75rem; margin-top: .75rem; }
+.faq-avatar { width: 4rem; height: 4rem; border-radius: 50%; padding: .3rem; background: #FFE3D6; object-fit: contain; margin-bottom: 1.25rem; }
+.faq-card-title { font-size: 1.6rem; font-weight: 500; letter-spacing: -.02em; margin: 0 0 .6rem; }
 .faq-card-text { color: var(--muted); margin: 0 0 1.5rem; font-size: 1rem; }
 .faq-card-btn {
   display: flex; align-items: center; justify-content: center; min-height: 3rem; width: 100%;
-  border-radius: 999px; background: var(--orange); color: var(--on-orange); font-weight: 700; text-decoration: none;
-  transition: transform 150ms var(--ease-out), background-color 150ms ease;
+  border-radius: 999px; background: var(--accent); color: var(--faq-btn-fg); font-weight: 600; text-decoration: none;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 30%, transparent);
+  transition: transform 150ms var(--ease-out), box-shadow 150ms ease;
 }
-@media (hover: hover) and (pointer: fine) { .faq-card-btn:hover { transform: translateY(-1px); background: var(--orange-hover); } }
+@media (hover: hover) and (pointer: fine) { .faq-card-btn:hover { transform: translateY(-1px); box-shadow: 0 12px 26px color-mix(in srgb, var(--accent) 38%, transparent); } }
 .faq-card-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 
 .faq-list { display: grid; gap: .75rem; min-width: 0; }
 .faq-item { border-radius: 16px; overflow: hidden; }
-.faq-item[open] { border-color: var(--orange); }
 .faq-item summary {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding: 1.1rem 1.35rem; cursor: pointer; list-style: none; min-height: 3.5rem;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; border-radius: 16px; }
-.faq-q { margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: -.01em; color: var(--ink); }
+.faq-q { margin: 0; font-size: 1.1rem; font-weight: 500; letter-spacing: -.01em; color: var(--ink); }
 /* Plus, der drejer til et kryds, når svaret er åbent */
 .faq-icon { position: relative; flex: none; width: 1rem; height: 1rem; transition: rotate 200ms var(--ease-out); }
-.faq-icon::before, .faq-icon::after { content: ""; position: absolute; left: 50%; top: 50%; width: 100%; height: 2px; border-radius: 2px; background: var(--accent); translate: -50% -50%; }
+.faq-icon::before, .faq-icon::after { content: ""; position: absolute; left: 50%; top: 50%; width: 100%; height: 1.75px; border-radius: 2px; background: var(--ink); translate: -50% -50%; }
 .faq-icon::after { rotate: 90deg; }
 .faq-item[open] .faq-icon { rotate: 45deg; }
 .faq-a { padding: 0 1.35rem 1.25rem; }
@@ -704,8 +730,8 @@ h1 {
   .faq-item::details-content { transition: none; }
 }
 
-/* Kontakt: to kort side om side (mail og telefon), under hinanden på mobil */
-.big { font-size: clamp(2rem, 5.6vw, 3.4rem); max-width: 22ch; }
+/* Kontakt: tre kort side om side (kalender, mail og telefon), under hinanden på mobil */
+.big { font-size: clamp(2.25rem, 6vw, 3.75rem); }
 .contact { position: relative; }
 /* Den mediterende memoji: over overskriften på smalle skærme, ved siden af kortene på brede */
 .memoji-contact { display: block; width: 9rem; height: auto; margin: 0 auto 1.25rem; filter: var(--figure-shadow); }
@@ -720,33 +746,33 @@ h1 {
 .contact-card {
   display: flex; flex-direction: column; align-items: flex-start; gap: .2rem; height: 100%;
   padding: 1.4rem 1.4rem 1.5rem; border-radius: var(--radius); text-decoration: none;
-  background: var(--card); border: 1px solid var(--soft-line);
-  transition: transform 160ms var(--ease-out), border-color 150ms ease;
+  background: var(--bg); border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgb(43 42 53 / .04), 0 12px 32px rgb(43 42 53 / .06);
+  transition: transform 160ms var(--ease-out), border-color 150ms ease, box-shadow 150ms ease;
 }
 .contact-icon {
   display: grid; place-items: center; width: 2.75rem; height: 2.75rem; margin-bottom: .9rem;
-  border-radius: 50%; background: var(--orange); color: var(--on-orange);
+  border-radius: 50%; background: var(--accent); color: #fff;
 }
-.contact-title { font-size: 1.15rem; font-weight: 800; color: var(--ink); }
+:root[data-theme="dark"] .contact-icon { color: var(--bg); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .contact-icon { color: var(--bg); } }
+.contact-title { font-size: 1.15rem; font-weight: 600; letter-spacing: -.02em; color: var(--ink); }
 .contact-sub { font-size: .95rem; color: var(--muted); overflow-wrap: anywhere; }
 @media (hover: hover) and (pointer: fine) {
-  .contact-card:hover { transform: translateY(-2px); border-color: var(--orange); }
+  .contact-card:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); box-shadow: 0 1px 2px rgb(43 42 53 / .04), 0 16px 36px rgb(43 42 53 / .12); }
 }
 .contact-card:active { transform: scale(.98); }
 
-/* Footer: mørk flade helt ud til kanterne. En tynd linje med navn, genveje og kontakt, og under den
-   Kaspers foto, et kryds og BoligPortals logo skaleret op, så de fylder hele bredden og står lige højt.
-   Logoets format er 570 / 118 = 4,83. Foto 15,4 + mellemrum 2 + kryds 6 + mellemrum 2 + logo 74,4 = 99,8 % af bredden. */
+/* Footer: BoligPortals orange flade helt ud til kanterne. En tynd linje med navn, genveje og kontakt,
+   og under den memojien og BoligPortals logo skaleret op, så de fylder hele bredden. Logoet er farvet hvidt med en maske
+   (personen er skåret ud af huset). Teksten er mørk, fordi hvid tekst på orange er for svag at læse. */
 .footer {
-  --fbg: #2B2A35; --ffg: #FFFFFF; --fdim: #D9D7E0;
+  --fbg: #FF6633; --ffg: #2B2A35; --fdim: #3D3C48;
   position: relative; padding: 2.25rem var(--gutter) clamp(1.5rem, 3vw, 2.5rem);
   background: var(--fbg); color: var(--fdim); font-size: .9rem;
   box-shadow: 0 0 0 100vmax var(--fbg); clip-path: inset(0 -100vmax);
 }
-:root[data-theme="dark"] .footer { --fbg: #111017; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .footer { --fbg: #111017; } }
 .footer p { margin: 0; }
-.footer-copy { white-space: nowrap; }
 .footer a { color: var(--ffg); text-decoration: none; text-underline-offset: 3px; }
 @media (hover: hover) and (pointer: fine) { .footer a:hover { text-decoration: underline; } .footer .footer-mark:hover { text-decoration: none; } }
 .footer a:focus-visible { outline: 2px solid var(--ffg); outline-offset: 3px; border-radius: 4px; }
@@ -754,13 +780,18 @@ h1 {
 @media (min-width: 64rem) { .footer-bar { flex-wrap: nowrap; } .footer-nav { margin-inline: auto; } }
 .footer-nav, .footer-contact { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.5rem; }
 .footer-icon { display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; margin: -.75rem; }
+/* Hovedet og logoet deler bredden, så de altid er lige høje: hoved = (100 % - mellemrum) / (1 + logoets format).
+   BoligPortals logo har formatet 570 / 118 = 4,83, så hovedet får (100 - 2) / 5,83 = 16,8 % af bredden. */
 .footer-mark {
   container-type: inline-size;
-  display: flex; align-items: center; gap: 2cqw; margin-top: clamp(2.5rem, 6vw, 4.5rem);
+  display: flex; align-items: flex-end; gap: 2cqw; margin-top: clamp(2.5rem, 6vw, 4.5rem);
 }
-.footer-head { width: 15.4cqw; height: 15.4cqw; flex: none; border-radius: 50%; object-fit: cover; border: .6cqw solid var(--orange); }
-.footer-x { flex: none; width: 6cqw; color: var(--fdim); font-size: 8cqw; font-weight: 300; line-height: 1; text-align: center; }
-.footer-logo { flex: none; display: block; width: 74.4cqw; height: auto; }
+.footer-head { width: 16.8cqw; height: 16.8cqw; flex: none; object-fit: contain; }
+.footer-logo {
+  flex: 1; aspect-ratio: 570 / 118; background: #FFFFFF;
+  -webkit-mask: url("/assets/boligportal-logo-maske.svg") center / contain no-repeat;
+  mask: url("/assets/boligportal-logo-maske.svg") center / contain no-repeat;
+}
 @media (hover: hover) and (pointer: fine) {
   .footer-head { transition: rotate 250ms var(--ease-out), scale 250ms var(--ease-out); }
   .footer-mark:hover .footer-head { rotate: -6deg; scale: 1.04; }
@@ -770,25 +801,28 @@ h1 {
 }
 
 /* 404: lille etiket over overskriften og genveje til de mest brugte steder */
-.eyebrow-404 { font-size: .85rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 .5rem; }
+.eyebrow-404 { font-size: .85rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 .5rem; }
 .links-404 { list-style: none; padding: 0; margin: 0 0 2rem; display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; }
 .links-404 a {
-  display: inline-block; padding: .5rem 1rem; border-radius: 999px; text-decoration: none; font-weight: 600;
-  background: var(--soft); border: 1px solid var(--soft-line); transition: background-color .15s;
+  display: inline-block; padding: .5rem 1rem; border-radius: 999px; text-decoration: none; font-weight: 500;
+  background: var(--soft); border: 1px solid var(--line); transition: background-color .15s;
 }
 .links-404 a:hover { background: var(--hover); }
+
+/* Tak-siden */
 .thanks { min-height: 75vh; justify-content: center; padding-bottom: 5rem; }
 .thanks .mascot { width: 140px; height: auto; margin: 0 0 1.5rem; }
 .actions-404 { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
 .btn-ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--field-border); }
 .btn-ghost:hover { color: var(--ink); background: var(--hover); }
-.thanks h1 { font-size: clamp(2rem, 6vw, 3.6rem); }
+.thanks h1 { font-size: clamp(2.25rem, 6vw, 4rem); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   /* Det, der bevæger sig, står stille. Farver og fades bliver, fordi de hjælper med at forstå skiftet. */
   .hey-voice i, .hey.is-talking .hey-voice i, .scene-fig { animation: none; }
   .composer-caret, .composer.is-typing .composer-caret { animation: none; opacity: 0; }
+  .hero-title .accent, .chat::before { transition: none; }
   .scene-item.is-in .scene-img, .scene-item.is-in .ch, .scene-item.is-in .scene-text .wd { animation: fade 200ms ease both; animation-delay: 0ms; }
   .scene-item.is-out .scene-img, .scene-item.is-out .scene-title, .scene-item.is-out .scene-text { animation: fade-out 150ms ease both; }
   .pick img { transition: opacity 200ms ease, filter 200ms ease; }
@@ -802,3 +836,90 @@ h1 {
 }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fade-out { to { opacity: 0; } }
+
+/* Problemet: et workflow i n8n-stil på et prikket lærred. I fejl-tilstanden mangler motoren, og sidste node står rød.
+   I rettet-tilstanden er motoren sat ind først, sidste node er orange, og outputtet vises. main.js skifter tilstand. */
+.flowfix { --flow-red: #C23B3B; display: grid; gap: 2rem; }
+:root[data-theme="dark"] .flowfix { --flow-red: #FF8A8A; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .flowfix { --flow-red: #FF8A8A; } }
+.flowfix-text { max-width: 46rem; }
+.flowfix-text h2 { margin: 0 0 1rem; max-width: 24ch; }
+.flowfix-text p:last-child { margin: 0; color: var(--muted); font-size: 1.1rem; }
+.flowfix-eyebrow { display: inline-flex; align-items: center; gap: .5rem; margin: 0 0 1rem; font-size: .95rem; font-weight: 500; }
+.flowfix-eyebrow span { width: .5rem; height: .5rem; border-radius: 50%; background: var(--flow-red); box-shadow: 0 0 0 4px color-mix(in srgb, var(--flow-red) 18%, transparent); }
+.flow {
+  --flow-gap: 2.25rem; --flow-dir: 90deg;
+  padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid var(--line); border-radius: var(--radius);
+  background-color: var(--soft); background-image: radial-gradient(var(--rail) 1px, transparent 1.5px); background-size: 18px 18px;
+}
+.flow-nodes { list-style: none; margin: 0; padding: 0; display: flex; gap: var(--flow-gap); }
+.flow-node {
+  --flow-line: var(--accent);
+  position: relative; flex: 1 1 0; min-width: 0; display: grid; align-content: start; gap: .15rem;
+  padding: .9rem 2rem .9rem 1rem; background: var(--bg); border: 2px solid var(--line); border-radius: 14px;
+  box-shadow: 0 1px 2px rgb(43 42 53 / .05), 0 8px 20px rgb(43 42 53 / .06);
+  transition: border-color 300ms ease;
+}
+/* Stregen fra forrige node, hvor data løber igennem */
+.flow-node + .flow-node::before {
+  content: ""; position: absolute; right: 100%; top: 50%; width: var(--flow-gap); height: 2px; margin-right: 2px;
+  background: repeating-linear-gradient(var(--flow-dir), var(--flow-line) 0 6px, transparent 6px 11px);
+  animation: flow-run 900ms linear infinite;
+}
+@keyframes flow-run { to { background-position: 11px 0; } }
+@keyframes flow-run-v { to { background-position: 0 11px; } }
+.flow-dot { position: absolute; top: .75rem; right: .75rem; width: .6rem; height: .6rem; border-radius: 50%; background: var(--accent); }
+.flow-name { font-weight: 600; line-height: 1.3; }
+.flow-sub { color: var(--muted); font-size: .875rem; line-height: 1.4; }
+.flow-error {
+  display: none; margin-top: .5rem; padding: .35rem .55rem; border-radius: 8px;
+  background: color-mix(in srgb, var(--flow-red) 12%, var(--bg)); color: var(--flow-red);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: .78rem; line-height: 1.35;
+}
+.flow-new { border-color: var(--accent); animation: flow-pop 450ms var(--ease-out); }
+@keyframes flow-pop { from { opacity: 0; transform: scale(.85); } }
+.flow-end { border-color: var(--accent); }
+.flow-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; }
+.flow-output {
+  margin: 0; padding: .55rem 1rem; border-radius: 999px; font-weight: 600; font-size: .95rem;
+  background: color-mix(in srgb, var(--accent) 12%, var(--bg)); color: var(--ink);
+  animation: flow-pop 450ms var(--ease-out);
+}
+.flow-output span { color: var(--muted); font-weight: 500; }
+.flowfix-after { margin: 0; max-width: 40rem; font-size: 1.15rem; }
+
+/* Fejl-tilstanden: motoren mangler, sidste node blinker rødt, og der er intet output */
+.flowfix[data-state="fejl"] .flow-new,
+.flowfix[data-state="fejl"] .flow-ok,
+.flowfix[data-state="fejl"] .flow-output,
+.flowfix[data-state="fejl"] .flowfix-after { display: none; }
+.flowfix[data-state="fejl"] .flow-foot { justify-content: flex-end; }
+.flowfix[data-state="fejl"] .flow-new + .flow-node::before { display: none; }
+.flowfix[data-state="fejl"] .flow-end { --flow-line: var(--flow-red); border-color: var(--flow-red); }
+.flowfix[data-state="fejl"] .flow-end .flow-dot { background: var(--flow-red); animation: flow-blink 1.1s ease-in-out infinite; }
+.flowfix[data-state="fejl"] .flow-error { display: block; }
+@keyframes flow-blink { 50% { opacity: .25; } }
+
+/* Mobil: noderne står lodret, og stregerne går nedad */
+@media (max-width: 47.99rem) {
+  .flow { --flow-gap: 1.5rem; --flow-dir: 180deg; }
+  .flow-nodes { flex-direction: column; }
+  .flow-node + .flow-node::before { right: auto; left: 1.5rem; top: auto; bottom: 100%; width: 2px; height: var(--flow-gap); margin: 0 0 2px; animation-name: flow-run-v; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-node + .flow-node::before, .flowfix[data-state="fejl"] .flow-end .flow-dot, .flow-new, .flow-output { animation: none; }
+}
+
+/* Under casene: link til flere projekter i CV'et */
+.cases-more { margin: 2rem 0 0; text-align: center; color: var(--muted); }
+.cases-more a { color: var(--ink); font-weight: 600; text-underline-offset: 3px; }
+
+/* Studio og Tasks i aktion: to kort med skærmbilleder under casene, i samme stil som casekortene */
+.case-shots { margin-top: 1.25rem; }
+@media (min-width: 40rem) { .case-shots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.case-shots .case-card { min-height: 0; }
+.case-shot { align-self: stretch; margin: 1.25rem 0; }
+.case-shot img {
+  display: block; width: 100%; height: auto; border-radius: 12px; background: #FFFFFF;
+  border: 1px solid var(--line); box-shadow: 0 8px 24px rgb(43 42 53 / .08);
+}

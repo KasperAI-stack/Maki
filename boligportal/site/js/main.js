@@ -2,7 +2,7 @@
 
 // Hero: chatfeltet. Når I vælger en agent i feltets bund, bliver "Hey Kasper, byg os lige …" skrevet færdigt,
 // prikkerne skriver, og memojien svarer med agentens navn og beskrivelse.
-// Agenterne er fem af agenterne i motoren, bygget på opgaverne i BoligPortals jobopslag.
+// Agenterne er fem af opgaverne fra BoligPortals jobopslag: SEO, AI Search, paid, tests og rapportering.
 // Uden JavaScript står "Hey Kasper, byg os lige en SEO-agent" i feltet, SEO-agenten vises, og valgene er skjult.
 
 (function () {
@@ -203,7 +203,7 @@ if (toggle) {
     toggle.setAttribute("aria-label", dark ? (en ? "Switch to light theme" : "Skift til lyst tema") : (en ? "Switch to dark theme" : "Skift til mørkt tema"));
     // Browserens farve (adresselinjen på mobil) følger det valgte tema.
     document.querySelectorAll('meta[name="theme-color"]').forEach(function (meta) {
-      meta.setAttribute("content", dark ? "#1C1B23" : "#FFFFFF");
+      meta.setAttribute("content", dark ? "#16151C" : "#FFFFFF");
     });
   };
   toggle.hidden = false;
@@ -223,8 +223,7 @@ if (toggle) {
   if (!("IntersectionObserver" in window)) return;
   var groups = [
     ".section:not(.hero) > h2", ".split-text", ".section > .lede-small", ".process-intro",
-    ".about-text", ".cases-head", ".board", ".agent-card", ".engine-note", ".sys-card", ".flow li",
-    ".proof-tile", ".proof-list li", ".tool", ".contact-list li"
+    ".about-text", ".cases-head", ".case-card", ".tool", ".contact-list li"
   ];
   var els = [];
   groups.forEach(function (sel) {
@@ -266,7 +265,7 @@ if (toggle) {
   var dots = [], w = 0, h = 0, dpr = 1, raf = 0;
   var pointer = { x: 0, y: 0, active: false, strength: 0 };
   var eye = { x: 0, y: 0 };
-  var colors = { dot: "#CDBFB8", accent: "#CC4314" };
+  var colors = { dot: "#C9B8B0", accent: "#FF6633" };
 
   stage.classList.add("has-field");
 
@@ -433,4 +432,18 @@ if (toggle) {
   window.addEventListener("scroll", kick, { passive: true });
   window.addEventListener("resize", kick);
   update();
+})();
+
+// Problemet: flowet starter i fejl-tilstanden, og knappen bygger motoren ind først (og tilbage igen).
+(function () {
+  var section = document.querySelector("[data-flowfix]");
+  if (!section) return;
+  var btn = section.querySelector("[data-flow-btn]");
+  section.setAttribute("data-state", "fejl");
+  btn.hidden = false;
+  btn.addEventListener("click", function () {
+    var fejl = section.getAttribute("data-state") === "fejl";
+    section.setAttribute("data-state", fejl ? "rettet" : "fejl");
+    btn.textContent = fejl ? "Se fejlen igen" : "Byg motoren ind";
+  });
 })();
